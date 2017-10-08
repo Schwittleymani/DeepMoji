@@ -5,8 +5,8 @@ import numpy as np
 import re
 import string
 import emoji
-from tokenizer import RE_MENTION, RE_URL
-from global_variables import SPECIAL_TOKENS
+from .tokenizer import RE_MENTION, RE_URL
+from .global_variables import SPECIAL_TOKENS
 from itertools import groupby
 
 AtMentionRegex = re.compile(RE_MENTION)
@@ -31,8 +31,8 @@ VARIATION_SELECTORS = [ u'\ufe00',
                         u'\ufe0f']
 
 # from https://stackoverflow.com/questions/92438/stripping-non-printable-characters-from-a-string-in-python
-ALL_CHARS = (unichr(i) for i in xrange(sys.maxunicode))
-CONTROL_CHARS = ''.join(map(unichr, range(0,32) + range(127,160)))
+ALL_CHARS = (chr(i) for i in range(sys.maxunicode))
+CONTROL_CHARS = ''.join(map(chr, list(range(0,32)) + list(range(127,160))))
 CONTROL_CHAR_REGEX = re.compile('[%s]' % re.escape(CONTROL_CHARS))
 
 def is_special_token(word):
@@ -130,7 +130,8 @@ def shorten_word(word):
 
     # only shorten ASCII words
     try:
-        word.decode('ascii')
+        pass
+        #word.decode('ascii')
     except (UnicodeDecodeError, UnicodeEncodeError) as e:
         return word
 

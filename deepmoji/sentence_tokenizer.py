@@ -6,9 +6,9 @@ from __future__ import print_function, division
 
 import numbers
 import numpy as np
-from create_vocab import extend_vocab, VocabBuilder
-from word_generator import WordGenerator
-from global_variables import SPECIAL_TOKENS
+from .create_vocab import extend_vocab, VocabBuilder
+from .word_generator import WordGenerator
+from .global_variables import SPECIAL_TOKENS
 from sklearn.model_selection import train_test_split
 from copy import deepcopy
 

@@ -23,7 +23,7 @@ def prompt():
             'n': False,
             'no': False,
         }
-        choice = raw_input().lower()
+        choice = input().lower()
         if choice in valid:
             return valid[choice]
         else:

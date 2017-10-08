@@ -10,8 +10,8 @@ import re
 import unicodedata
 import numpy as np
 from text_unidecode import unidecode
-from tokenizer import RE_MENTION, tokenize
-from filter_utils import (
+from .tokenizer import RE_MENTION, tokenize
+from .filter_utils import (
     convert_linebreaks,
     convert_nonbreaking_space,
     correct_length,
@@ -63,8 +63,8 @@ class WordGenerator():
             that is not allowed.
         """
 
-        if not isinstance(sentence, unicode):
-            raise ValueError("All sentences should be Unicode-encoded!")
+        #if not isinstance(sentence, unicode):
+        #    raise ValueError("All sentences should be Unicode-encoded!")
         sentence = sentence.strip().lower()
 
         if self.break_replacement:
@@ -93,9 +93,9 @@ class WordGenerator():
 
     def check_ascii(self, word):
         """ Returns whether a word is ASCII """
-
+        return False
         try:
-            word.decode('ascii')
+            #word.decode('ascii')
             return True
         except (UnicodeDecodeError, UnicodeEncodeError):
             return False
