@@ -1,5 +1,6 @@
 import json
 import csv
+import random
 import numpy as np
 from deepmoji.sentence_tokenizer import SentenceTokenizer
 from deepmoji.model_def import deepmoji_emojis
@@ -23,7 +24,7 @@ class DeepMojiWrapper(object):
             for row in readCSV:
                 deepmoji_index = int(row[0])
                 unicode_emoji = row[1]
-                self.mapping[deepmoji_index] = '&#x' + unicode_emoji
+                self.mapping[deepmoji_index] = '&#x' + unicode_emoji + ';'
 
     def top_elements(self, array, k):
         ind = np.argpartition(array, -k)[-k:]
@@ -61,6 +62,11 @@ class DeepMojiWrapper(object):
             scores.append(t_score)
             print(t_score)
             return ind_top_unicode
+
+    def random(self, count):
+        return_list = []
+        for i in range(count):
+            return_list.append(int(random.random(63)))
 
 if __name__ == "__main__":
     wrappper = DeepMojiWrapper()
